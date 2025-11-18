@@ -1,12 +1,11 @@
-import { ModeToggle } from "../darkmode-toggle-btn";
-import { Button } from "../ui/button";
+import { ModeToggle } from '../darkmode-toggle-btn'
 
 export default function DevPanelProvider({
 	children,
 	Active = false,
 }: Readonly<{
-	children: React.ReactNode;
-	Active: boolean;
+	children: React.ReactNode
+	Active: boolean
 }>) {
 	return (
 		<>
@@ -23,5 +22,5 @@ export default function DevPanelProvider({
 				<>{children}</>
 			)}
 		</>
-	);
+	)
 }

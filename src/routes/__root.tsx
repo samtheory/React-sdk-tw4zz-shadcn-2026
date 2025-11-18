@@ -1,6 +1,6 @@
 // src/routes/__root.tsx
-import { createRootRoute, Link, Outlet } from "@tanstack/react-router";
-import { TanStackRouterDevtools } from "@tanstack/react-router-devtools";
+import { createRootRoute, Link, Outlet } from '@tanstack/react-router'
+import { TanStackRouterDevtools } from '@tanstack/react-router-devtools'
 
 const RootLayout = () => {
 	return (
@@ -21,9 +21,9 @@ const RootLayout = () => {
 
 			<TanStackRouterDevtools position="bottom-right" />
 		</>
-	);
-};
+	)
+}
 
 export const Route = createRootRoute({
 	component: RootLayout,
-});
+})
