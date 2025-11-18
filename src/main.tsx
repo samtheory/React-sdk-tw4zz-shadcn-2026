@@ -20,9 +20,8 @@ declare module '@tanstack/react-router' {
 createRoot(document.getElementById('root')!).render(
 	<StrictMode>
 		<ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
-			<DevPanelProvider Active={true}>
 				<RouterProvider router={router} />
-			</DevPanelProvider>
+	
 		</ThemeProvider>
 	</StrictMode>,
 )
