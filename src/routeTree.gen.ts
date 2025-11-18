@@ -13,6 +13,7 @@ import { Route as LoginRouteImport } from './routes/login'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as DashboardIndexRouteImport } from './routes/dashboard/index'
 import { Route as AppIndexRouteImport } from './routes/app/index'
+import { Route as ApiIndexRouteImport } from './routes/api/index'
 
 const LoginRoute = LoginRouteImport.update({
   id: '/login',
@@ -34,16 +35,23 @@ const AppIndexRoute = AppIndexRouteImport.update({
   path: '/app/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ApiIndexRoute = ApiIndexRouteImport.update({
+  id: '/api/',
+  path: '/api/',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/login': typeof LoginRoute
+  '/api': typeof ApiIndexRoute
   '/app': typeof AppIndexRoute
   '/dashboard': typeof DashboardIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/login': typeof LoginRoute
+  '/api': typeof ApiIndexRoute
   '/app': typeof AppIndexRoute
   '/dashboard': typeof DashboardIndexRoute
 }
@@ -51,20 +59,22 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/login': typeof LoginRoute
+  '/api/': typeof ApiIndexRoute
   '/app/': typeof AppIndexRoute
   '/dashboard/': typeof DashboardIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/login' | '/app' | '/dashboard'
+  fullPaths: '/' | '/login' | '/api' | '/app' | '/dashboard'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/login' | '/app' | '/dashboard'
-  id: '__root__' | '/' | '/login' | '/app/' | '/dashboard/'
+  to: '/' | '/login' | '/api' | '/app' | '/dashboard'
+  id: '__root__' | '/' | '/login' | '/api/' | '/app/' | '/dashboard/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   LoginRoute: typeof LoginRoute
+  ApiIndexRoute: typeof ApiIndexRoute
   AppIndexRoute: typeof AppIndexRoute
   DashboardIndexRoute: typeof DashboardIndexRoute
 }
@@ -99,12 +109,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AppIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/api/': {
+      id: '/api/'
+      path: '/api'
+      fullPath: '/api'
+      preLoaderRoute: typeof ApiIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   LoginRoute: LoginRoute,
+  ApiIndexRoute: ApiIndexRoute,
   AppIndexRoute: AppIndexRoute,
   DashboardIndexRoute: DashboardIndexRoute,
 }

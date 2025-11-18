@@ -1,9 +1,9 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import './global.css'
-
+import { QueryProvider } from "./lib/providers/query-provider.tsx";
 import { ThemeProvider } from '@/components/theme-provider'
-import DevPanelProvider from './components/custom/Devpanel.tsx'
+
 import { RouterProvider, createRouter } from '@tanstack/react-router'
 
 // Import the generated route tree (created by the plugin)
@@ -15,13 +15,13 @@ const router = createRouter({ routeTree })
 declare module '@tanstack/react-router' {
 	interface Register {
 		router: typeof router
-	}
 }
 createRoot(document.getElementById('root')!).render(
 	<StrictMode>
 		<ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
+			<QueryProvider>
 				<RouterProvider router={router} />
-	
+			</QueryProvider>
 		</ThemeProvider>
 	</StrictMode>,
 )
